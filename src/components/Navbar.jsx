@@ -6,19 +6,19 @@ const Navbar = () => {
   return (
     <BNavbar bg="dark">
       <Container>
-        <div>
+        <Nav>
           <NavLink to="/" className={setActiveClass}>
             Home
           </NavLink>
           <NavLink to="/pizza" className={setActiveClass}>
             Pizzas
           </NavLink>
-        </div>
-        <div>
+        </Nav>
+        <Nav>
           <NavLink to="/cart" className={setActiveClass}>
             Cart
           </NavLink>
-        </div>
+        </Nav>
       </Container>
     </BNavbar>
   )
