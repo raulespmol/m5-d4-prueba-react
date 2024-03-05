@@ -1,0 +1,9 @@
+nav a {
+  color: #FFF;
+  text-decoration: none;
+  padding: 8px;
+}
+
+nav a.active {
+  color: #f2c42f
+}
