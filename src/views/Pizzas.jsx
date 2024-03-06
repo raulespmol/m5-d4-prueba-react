@@ -8,9 +8,10 @@ const Pizzas = () => {
 
   return (
     <Row className="g-3">
+      <h1>Nuestras Pizzas</h1>
       {pizzas.map(pizza => 
-        <Col key={pizza.id} sm={4}>
-          <PizzaCard data={pizza} />
+        <Col key={pizza.id} sm={3}>
+          <PizzaCard data={pizza} from={'pizzas'} />
         </Col>
       )}
     </Row>

@@ -21,7 +21,7 @@ function App() {
   return (
     <ContextProvider>
       <Navbar />
-      <Container>
+      <Container className='mt-3'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pizza" element={<Pizzas />} />

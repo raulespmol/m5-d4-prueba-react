@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 const Navbar = () => {
   const setActiveClass = ({isActive}) => isActive ? 'active' : ''
   return (
-    <BNavbar bg="dark" className="mb-3">
+    <BNavbar bg="dark" fixed="top">
       <Container>
         <Nav>
           <NavLink to="/" className={setActiveClass}>
