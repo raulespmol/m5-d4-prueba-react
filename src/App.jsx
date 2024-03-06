@@ -14,20 +14,22 @@ import ContextProvider from './context/AppContext'
 
 //styles
 import './App.css'
+import { Container } from 'react-bootstrap'
 
 function App() {
 
   return (
     <ContextProvider>
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pizza" element={<Pizzas />} />
-        <Route path="/pizza/:name" element={<PizzaDetail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pizza" element={<Pizzas />} />
+          <Route path="/pizza/:name" element={<PizzaDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Container>
     </ContextProvider>
   )
 }
