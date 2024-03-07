@@ -1,5 +1,34 @@
+#root {
+  background-color: #f1f1f1;
+}
+
 body {
-  padding: 60px 0;
+  padding-top: 56px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+
+  background: url('/hero.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #1C2735;
+
+  color: #FFF;
+  text-shadow: 3px 3px 5px #00000070;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero .hero-sub {
+  font-size: 1.5rem;
 }
 
 nav a {
