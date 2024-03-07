@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap"
+import { Button, Card, ListGroup } from "react-bootstrap"
 
 
 const PizzaCard = ({data, from}) => {
@@ -15,26 +15,34 @@ const PizzaCard = ({data, from}) => {
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>
-            {desc}
-          </Card.Text>
+          <Card.Title>{formatName(name)} - ${price}</Card.Title>
         </Card.Body>
-        <Card.Footer>
-          <Card.Text>{price}</Card.Text>
-        </Card.Footer>
+        <ListGroup className="list-group-flush">
+          {ingredients.map((ing, index) => {
+            return (
+            <ListGroup.Item key={index}>
+              {formatName(ing)}
+            </ListGroup.Item>)}
+          )}
+        </ListGroup>
       </Card>
     ) : from === 'pizzas' ? (
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>{formatName(name)}</Card.Title>
             <ul>
-              {ingredients.map((ing, index) => <li key={index}>{formatName(ing)}</li>)}
+              {ingredients.map((ing, index) => {
+               return (
+                <li key={index}>
+                  {formatName(ing)}
+                </li>)}
+              )}
             </ul>
         </Card.Body>
-        <Card.Footer>
-          <Card.Text>{price}</Card.Text>
+        <Card.Footer className="text-center d-flex justify-content-between">
+          <h4>${price}</h4>
+          <Button>Agregar</Button>
         </Card.Footer>
       </Card>
     ) : null
