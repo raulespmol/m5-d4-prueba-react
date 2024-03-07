@@ -11,7 +11,7 @@ const Pizzas = () => {
       <h1>Nuestras Pizzas</h1>
       {pizzas.map(pizza => 
         <Col key={pizza.id} sm={3}>
-          <PizzaCard data={pizza} from={'pizzas'} />
+          <PizzaCard pizza={pizza} from={'pizzas'} />
         </Col>
       )}
     </Row>

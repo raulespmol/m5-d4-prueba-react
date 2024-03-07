@@ -6,10 +6,11 @@ const ContextProvider = ({children}) => {
   const [pizzas, setPizzas] = useState([])
   const [cart, setCart] = useState([])
 
-  const getPizzas = () => {
+  const getPizzas = async () => {
     fetch('/pizzas.json')
     .then(response => response.json())
-    .then(data => setPizzas(data))
+    .then(data => data.map(item => ({...item, count: 0}) ))
+    .then(newData => setPizzas(newData))
   }
 
   useEffect(() => {

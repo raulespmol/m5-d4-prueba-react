@@ -1,13 +1,20 @@
+import { useContext } from "react"
 import { Button, Card, ListGroup } from "react-bootstrap"
+import { AppContext } from "../context/AppContext"
 
 
-const PizzaCard = ({data, from}) => {
-  const {desc, img, ingredients, name, price} = data
+const PizzaCard = ({pizza, from}) => {
+  const {desc, img, ingredients, name, price} = pizza
+  const {setCart} = useContext(AppContext)
 
   const formatName = name => {
     const words = name.split(' ')
     const capitalized = words.map(w => w[0].toUpperCase() + w.slice(1))
     return capitalized.join(' ')
+  }
+
+  const addCart = () => {
+    console.log(pizza);
   }
 
   return(
@@ -42,7 +49,7 @@ const PizzaCard = ({data, from}) => {
         </Card.Body>
         <Card.Footer className="text-center d-flex justify-content-between">
           <h4>${price}</h4>
-          <Button>Agregar</Button>
+          <Button onClick={addCart}>Agregar</Button>
         </Card.Footer>
       </Card>
     ) : null

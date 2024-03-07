@@ -19,13 +19,13 @@ const Home = () => {
 
       <h2 className="text-center mb-5 fw-bold text-primary fs-1">Las más vendidas</h2>
 
-      <Row className="g-2 p-2">
+      {<Row className="g-2 p-2">
         {bestPizzas.map(pizza => 
           <Col key={pizza.id} sm={4}>
-            <PizzaCard data={pizza} from={'home'} />
+            <PizzaCard pizza={pizza} from={'home'} />
           </Col>
         )}
-      </Row>
+      </Row>}
       <Row>
         <Button
         variant="dark"
