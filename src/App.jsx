@@ -21,7 +21,7 @@ function App() {
   return (
     <ContextProvider>
       <Navbar />
-      <Container className='bg-white'>
+      <Container className='bg-white p-0'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pizza" element={<Pizzas />} />

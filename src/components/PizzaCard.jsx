@@ -15,7 +15,7 @@ const PizzaCard = ({data, from}) => {
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
-          <Card.Title>{formatName(name)} - ${price}</Card.Title>
+          <Card.Title className="m-0">{formatName(name)} - ${price}</Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
           {ingredients.map((ing, index) => {

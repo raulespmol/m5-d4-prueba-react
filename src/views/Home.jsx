@@ -17,19 +17,22 @@ const Home = () => {
         <p className="hero-sub">¡Las mejores pizzas!</p>
       </div>
 
-      <h2 className="text-center mb-5">Las más vendidas</h2>
-      <Row className="g-3">
+      <h2 className="text-center mb-5 fw-bold text-primary fs-1">Las más vendidas</h2>
+
+      <Row className="g-2 p-2">
         {bestPizzas.map(pizza => 
           <Col key={pizza.id} sm={4}>
             <PizzaCard data={pizza} from={'home'} />
           </Col>
         )}
       </Row>
-      <Row className="d-flex justify-content-center">
+      <Row>
         <Button
         variant="dark"
         className="mt-3"
-        onClick={() => navigate('/pizza')}>Ver más</Button>
+        onClick={() => navigate('/pizza')}>
+          Ver más
+        </Button>
       </Row>
     </>
   )
