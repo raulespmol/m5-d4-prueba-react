@@ -1,10 +1,20 @@
 import { useContext } from "react"
-import { Table } from "react-bootstrap"
+import { Button, Table } from "react-bootstrap"
 import { AppContext } from "../context/AppContext"
 
 const Cart = () => {
-  const {cart} = useContext(AppContext)
+  const {cart, setCart} = useContext(AppContext)
   const totalPagar = cart.reduce((acumulador, pizza) => acumulador + pizza.price * pizza.count, 0);
+
+  const cantidad = (id, mode) => {
+    const pizzaIndex = cart.findIndex(item => item.id === id)
+    const updatedCart = cart.map((item, index) =>
+        index === pizzaIndex 
+        ? {...item, count: mode == 'suma' ? item.count + 1 : item.count - 1 } 
+        : item
+      );
+    setCart(updatedCart);
+    };
 
   return (
     <>
@@ -13,7 +23,7 @@ const Cart = () => {
         <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Cant</th>
+            <th>Cantidad</th>
             <th>Pizza</th>
             <th>Total</th>
           </tr>
@@ -22,7 +32,22 @@ const Cart = () => {
           {cart.map(pizza => {
             return (
               <tr key={pizza.id}>
-                <td>{pizza.count}</td>
+                <td>
+                  <Button 
+                  size="sm" 
+                  variant="secondary"
+                  disabled={pizza.count == 1}
+                  onClick={() => cantidad(pizza.id, 'resta')}>
+                   - 
+                  </Button>
+                   {pizza.count} 
+                  <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => cantidad(pizza.id, 'suma')}>
+                   + 
+                  </Button>
+                </td>
                 <td>{pizza.name}</td>
                 <td>${pizza.price * pizza.count}</td>
               </tr>
