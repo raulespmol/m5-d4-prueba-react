@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext"
 
 const PizzaCard = ({pizza, from}) => {
   const {desc, img, ingredients, name, price} = pizza
-  const {setCart} = useContext(AppContext)
+  const {cart, setCart} = useContext(AppContext)
 
   const formatName = name => {
     const words = name.split(' ')
@@ -14,7 +14,17 @@ const PizzaCard = ({pizza, from}) => {
   }
 
   const addCart = () => {
-    console.log(pizza);
+    const pizzaIndex = cart.findIndex(item => item.id === pizza.id)
+    if (pizzaIndex !== -1) {
+      const updatedCart = cart.map((item, index) =>
+        index === pizzaIndex ? { ...item, count: item.count + 1  } : item
+      );
+      setCart(updatedCart);
+    } else {
+      const updatedPizza = { ...pizza, count: 1 };
+      const updatedCart = [...cart, updatedPizza ];
+      setCart(updatedCart);
+    }
   }
 
   return(
@@ -34,6 +44,25 @@ const PizzaCard = ({pizza, from}) => {
         </ListGroup>
       </Card>
     ) : from === 'pizzas' ? (
+      <Card className="h-100">
+        <Card.Img variant="top" src={img} />
+        <Card.Body>
+          <Card.Title>{formatName(name)}</Card.Title>
+            <ul>
+              {ingredients.map((ing, index) => {
+               return (
+                <li key={index}>
+                  {formatName(ing)}
+                </li>)}
+              )}
+            </ul>
+        </Card.Body>
+        <Card.Footer className="text-center d-flex justify-content-between">
+          <h4>${price}</h4>
+          <Button onClick={addCart}>Agregar</Button>
+        </Card.Footer>
+      </Card>
+    ) : from === 'detail' ? (
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
