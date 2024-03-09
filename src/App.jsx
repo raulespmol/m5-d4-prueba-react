@@ -1,6 +1,7 @@
 //components
 import Navbar from './components/Navbar'
 import { Routes, Route } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
 
 //views
 import Home from './views/Home'
@@ -12,16 +13,12 @@ import NotFound from './views/NotFound'
 //context
 import ContextProvider from './context/AppContext'
 
-//styles
-import './App.css'
-import { Container } from 'react-bootstrap'
-
 function App() {
 
   return (
     <ContextProvider>
       <Navbar />
-      <Container className='bg-white p-0'>
+      <Container className='bg-white pb-3'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pizza" element={<Pizzas />} />

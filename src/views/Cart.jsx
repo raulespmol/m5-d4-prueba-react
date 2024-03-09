@@ -1,38 +1,43 @@
+import { useContext } from "react"
 import { Table } from "react-bootstrap"
+import { AppContext } from "../context/AppContext"
 
 const Cart = () => {
+  const {cart} = useContext(AppContext)
+  const totalPagar = cart.reduce((acumulador, pizza) => acumulador + pizza.price * pizza.count, 0);
+
   return (
     <>
-      <h1>Carrito de compras</h1>
-      <Table striped bordered hover>
+      <h1>Tu pedido</h1>
+      {cart.length ? (
+        <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Cant</th>
+            <th>Pizza</th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
+          {cart.map(pizza => {
+            return (
+              <tr key={pizza.id}>
+                <td>{pizza.count}</td>
+                <td>{pizza.name}</td>
+                <td>${pizza.price * pizza.count}</td>
+              </tr>
+            )
+          })}
           <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan={2}>Larry the Bird</td>
-            <td>@twitter</td>
+            <td colSpan={3} className="text-end">
+              <b>Total a pagar:</b> ${totalPagar}
+            </td>
           </tr>
         </tbody>
       </Table>
+      ) : (
+        <p className="fs-3">No has agregado productos al carrito</p>
+      )}
     </>
   )
 }
