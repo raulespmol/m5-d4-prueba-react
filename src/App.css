@@ -47,3 +47,7 @@ nav a {
 nav a.active {
   color: #f2c42f
 }
+
+button .btn {
+  color: #FFF !important
+}
