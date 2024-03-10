@@ -17,7 +17,7 @@ const Home = () => {
         <p className="hero-sub">¡Las mejores pizzas!</p>
       </div>
 
-      <h2 className="text-center mb-5 fw-bold text-secondary fs-1">Las más vendidas</h2>
+      <h2 className="text-center mb-5 fw-bold text-primary fs-1">Las más vendidas</h2>
 
       {<Row className="g-2 p-2">
         {bestPizzas.map(pizza => 
@@ -28,7 +28,7 @@ const Home = () => {
       </Row>}
       <Row>
         <Button
-        variant="dark primary"
+        variant="secondary"
         className="mt-3"
         onClick={() => navigate('/pizza')}>
           Ver más
