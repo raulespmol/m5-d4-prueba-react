@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <>
-      <h1>Tu pedido</h1>
+      <h1 className="text-center">Tu pedido</h1>
       {cart.length ? (
         <>
           <Table striped bordered hover>
@@ -82,7 +82,7 @@ const Cart = () => {
           </div>
         </>
         ) : (
-          <p className="fs-3">No has agregado productos al carrito</p>
+          <p className="fs-3 text-center">No has agregado productos al carrito</p>
       )}
     </>
   )

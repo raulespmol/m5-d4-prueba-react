@@ -21,18 +21,20 @@ const Home = () => {
 
       {<Row className="g-2 p-2">
         {bestPizzas.map(pizza => 
-          <Col key={pizza.id} sm={4}>
+          <Col key={pizza.id} sm={6} md={4}>
             <PizzaCard pizza={pizza} from={'home'} />
           </Col>
         )}
       </Row>}
       <Row>
-        <Button
-        variant="secondary"
-        className="mt-3"
-        onClick={() => navigate('/pizza')}>
-          Ver más
-        </Button>
+        <Col className="d-flex justify-content-center">
+          <Button
+          variant="secondary"
+          className="mt-3 px-5"
+          onClick={() => navigate('/pizza')}>
+            Ver más
+          </Button>
+        </Col>
       </Row>
     </>
   )
