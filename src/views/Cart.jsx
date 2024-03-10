@@ -3,8 +3,13 @@ import { Button, Table } from "react-bootstrap"
 import { AppContext } from "../context/AppContext"
 
 const Cart = () => {
-  const {cart, setCart} = useContext(AppContext)
-  const totalPagar = cart.reduce((acumulador, pizza) => acumulador + pizza.price * pizza.count, 0);
+  const {cart, setCart, total} = useContext(AppContext)
+
+  const formatName = name => {
+    const words = name.split(' ')
+    const capitalized = words.map(w => w[0].toUpperCase() + w.slice(1))
+    return capitalized.join(' ')
+  }
 
   const handleCount = (id, mode) => {
     const pizzaIndex = cart.findIndex(item => item.id === id)
@@ -65,14 +70,14 @@ const Cart = () => {
                         + 
                       </Button>
                     </td>
-                    <td>{pizza.name}</td>
+                    <td>{formatName(pizza.name)}</td>
                     <td>${pizza.price * pizza.count}</td>
                   </tr>
                 )
               })}
               <tr>
                 <td colSpan={3} className="text-end">
-                  <b>Total a pagar:</b> ${totalPagar}
+                  <b>Total a pagar:</b> ${total}
                 </td>
               </tr>
             </tbody>
