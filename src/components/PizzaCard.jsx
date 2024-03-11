@@ -68,12 +68,12 @@ const PizzaCard = ({pizza, from}) => {
             <Button 
               onClick={() => handleDetail(name)}
               size="sm"
-              className="me-1"
+              className="me-1 text-white"
               variant="secondary">
                 Ver detalles
             </Button>
-            <Button onClick={addCart}>
-              Agregar
+            <Button onClick={() => addCart()} className='text-white'>
+              <i className='bx bxs-cart-add fs-5'></i> Añadir
             </Button>
           </div>
         </Card.Footer>

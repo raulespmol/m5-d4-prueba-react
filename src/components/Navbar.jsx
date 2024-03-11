@@ -21,7 +21,7 @@ const Navbar = () => {
         <Nav className="align-items-center">
           <span className="text-white">${total}</span>
           <NavLink to="/cart" className={setActiveClass}>
-            Cart
+            <i className='bx bxs-cart fs-4'></i>
           </NavLink>
         </Nav>
       </Container>

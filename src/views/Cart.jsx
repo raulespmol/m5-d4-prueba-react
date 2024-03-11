@@ -9,7 +9,7 @@ const Cart = () => {
     const pizzaIndex = cart.findIndex(item => item.id === id)
     const updatedCart = cart.map((item, index) =>
         index === pizzaIndex 
-        ? {...item, count: mode == 'suma' ? item.count + 1 : item.count - 1 } 
+        ? {...item, count: mode == 'suma' ? item.count + 1 : item.count > 1 ? item.count - 1 : item.count} 
         : item
       );
     setCart(updatedCart);
@@ -38,31 +38,28 @@ const Cart = () => {
               {cart.map(pizza => {
                 return (
                   <tr key={pizza.id}>
-                    <td>
-                      <Button 
-                      size="sm" 
-                      className="me-2" 
-                      variant="danger" 
-                      onClick={() => deleteFromCart(pizza.id)}>
-                        x
-                      </Button>
+                    <td className="d-flex align-items-center">
+                      <box-icon 
+                        name='trash'
+                        color='red'
+                        onClick={() => deleteFromCart(pizza.id)}>
+                      </box-icon>
 
-                      <Button 
-                      size="sm" 
-                      variant="secondary"
-                      disabled={pizza.count == 1}
-                      onClick={() => handleCount(pizza.id, 'resta')}>
-                        - 
-                      </Button>
+                      <box-icon 
+                        type='solid' 
+                        name='minus-circle'
+                        color='#daae00'
+                        onClick={() => handleCount(pizza.id, 'resta')}>
+                      </box-icon>
 
                       <span className="px-2">{pizza.count}</span> 
 
-                      <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={() => handleCount(pizza.id, 'suma')}>
-                        + 
-                      </Button>
+                      <box-icon 
+                        type='solid' 
+                        name='plus-circle'
+                        color='#daae00'
+                        onClick={() => handleCount(pizza.id, 'suma')}>
+                      </box-icon>
                     </td>
                     <td>{formatName(pizza.name)}</td>
                     <td>${pizza.price * pizza.count}</td>
@@ -77,7 +74,7 @@ const Cart = () => {
             </tbody>
           </Table>
           <div className="d-flex justify-content-end">
-            <Button>Realizar compra</Button>
+            <Button className="text-white">Realizar compra</Button>
           </div>
         </>
         ) : (

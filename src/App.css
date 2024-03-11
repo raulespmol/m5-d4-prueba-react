@@ -51,3 +51,7 @@ nav a.active {
 button .btn {
   color: #FFF !important
 }
+
+box-icon:hover {
+  cursor: pointer;
+}

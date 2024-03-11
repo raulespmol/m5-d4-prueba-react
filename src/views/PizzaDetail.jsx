@@ -59,24 +59,26 @@ const PizzaDetail = () => {
             )}
           </ul>
           <div className='d-flex align-items-center justify-content-between w-100'>
-            <div>
-              <Button 
-              size='sm'
-              variant='secondary'
-              onClick={() => handleCount('sub')}>
-                - 
-              </Button>
+            <div className='d-flex align-items-center'>
+              <box-icon 
+                type='solid' 
+                name='minus-circle'
+                color='#daae00'
+                onClick={() => handleCount('sub')}>
+              </box-icon>
               <span className='px-3'>{count}</span>
-              <Button 
-              size='sm'
-              variant='secondary'
-              onClick={() => handleCount('add')}>
-                + 
-              </Button>
+              <box-icon 
+                type='solid' 
+                name='plus-circle'
+                color='#daae00'
+                onClick={() => handleCount('add')}>
+              </box-icon>
+
               <span className='px-3 fs-4'>${count * price}</span>
             </div>
-            <Button onClick={() => addCart()}>Añadir</Button>
-
+            <Button onClick={() => addCart()} className='text-white'>
+              <i className='bx bxs-cart-add fs-5'></i> Añadir
+            </Button>
           </div>
         </Col>
       </Row>

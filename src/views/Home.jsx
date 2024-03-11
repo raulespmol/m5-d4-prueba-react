@@ -30,7 +30,7 @@ const Home = () => {
         <Col className="d-flex justify-content-center">
           <Button
           variant="secondary"
-          className="mt-3 px-5"
+          className="mt-3 px-5 text-white"
           onClick={() => navigate('/pizza')}>
             Ver más
           </Button>
