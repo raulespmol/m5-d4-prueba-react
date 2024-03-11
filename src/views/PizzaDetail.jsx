@@ -1,18 +1,22 @@
-import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { AppContext } from "../context/AppContext"
-import PizzaCard from "../components/PizzaCard"
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import PizzaCard from '../components/PizzaCard';
 
 const PizzaDetail = () => {
-  const { pizzas } = useContext(AppContext)
-  let { name } = useParams()
+  const { name } = useParams();
+  const { pizzas } = useContext(AppContext);
+  const selectedPizza = pizzas.find(pizza => pizza.name === name);
 
-  const selectedPizza = pizzas.filter(pizza => pizza.name == name)
+  if (!selectedPizza) {
+    return <div>No se encontró la pizza seleccionada</div>;
+  }
 
   return (
-    // <PizzaCard pizza={selectedPizza} from='detail'/>
-    <div>{selectedPizza.price}</div> 
-  )
-}
+    <div>
+      <PizzaCard pizza={selectedPizza} from={'detail'}/>
+    </div>
+  );
+};
 
-export default PizzaDetail
+export default PizzaDetail;
