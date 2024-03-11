@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { Button, Card, ListGroup } from "react-bootstrap"
+import { Button, Card, CardGroup, ListGroup } from "react-bootstrap"
 import { AppContext } from "../context/AppContext"
 import { useNavigate } from "react-router-dom"
 
 
 const PizzaCard = ({pizza, from}) => {
-  const {desc, img, ingredients, name, price} = pizza
+  const {img, ingredients, name, price} = pizza
   const {cart, setCart, formatName} = useContext(AppContext)
 
   const navigate = useNavigate()
@@ -76,32 +76,6 @@ const PizzaCard = ({pizza, from}) => {
               Agregar
             </Button>
           </div>
-        </Card.Footer>
-      </Card>
-    )
-  }
-
-  if(from == 'detail'){
-    return(
-      <Card className="h-100">
-        <Card.Img variant="top" src={img} />
-        <Card.Body>
-          <Card.Title>{formatName(name)}</Card.Title>
-            <Card.Text>
-              {desc}
-            </Card.Text>
-            {/* <ul>
-              {ingredients.map((ing, index) => {
-               return (
-                <li key={index}>
-                  {formatName(ing)}
-                </li>)}
-              )}
-            </ul> */}
-        </Card.Body>
-        <Card.Footer className="text-center d-flex justify-content-between">
-          <h4>${price}</h4>
-          <Button onClick={addCart}>Agregar</Button>
         </Card.Footer>
       </Card>
     )
