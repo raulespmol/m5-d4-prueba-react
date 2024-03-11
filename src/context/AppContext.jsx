@@ -19,6 +19,12 @@ const ContextProvider = ({children}) => {
     setTotal(totalPagar)
   }
 
+  const formatName = name => {
+    const words = name.split(' ')
+    const capitalized = words.map(w => w[0].toUpperCase() + w.slice(1))
+    return capitalized.join(' ')
+  }
+
   useEffect(() => {
     getPizzas()
   }, []) 
@@ -28,7 +34,7 @@ const ContextProvider = ({children}) => {
   }, [cart])
 
   return (
-    <AppContext.Provider value={{pizzas, cart, setCart, total}}>
+    <AppContext.Provider value={{pizzas, cart, setCart, total, formatName}}>
       {children}
     </AppContext.Provider>
   )

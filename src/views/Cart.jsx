@@ -3,13 +3,7 @@ import { Button, Table } from "react-bootstrap"
 import { AppContext } from "../context/AppContext"
 
 const Cart = () => {
-  const {cart, setCart, total} = useContext(AppContext)
-
-  const formatName = name => {
-    const words = name.split(' ')
-    const capitalized = words.map(w => w[0].toUpperCase() + w.slice(1))
-    return capitalized.join(' ')
-  }
+  const {cart, setCart, total, formatName} = useContext(AppContext)
 
   const handleCount = (id, mode) => {
     const pizzaIndex = cart.findIndex(item => item.id === id)

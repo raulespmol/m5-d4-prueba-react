@@ -1,17 +1,14 @@
 import { useContext } from "react"
 import { Button, Card, ListGroup } from "react-bootstrap"
 import { AppContext } from "../context/AppContext"
+import { useNavigate } from "react-router-dom"
 
 
 const PizzaCard = ({pizza, from}) => {
   const {desc, img, ingredients, name, price} = pizza
-  const {cart, setCart} = useContext(AppContext)
+  const {cart, setCart, formatName} = useContext(AppContext)
 
-  const formatName = name => {
-    const words = name.split(' ')
-    const capitalized = words.map(w => w[0].toUpperCase() + w.slice(1))
-    return capitalized.join(' ')
-  }
+  const navigate = useNavigate()
 
   const addCart = () => {
     const pizzaIndex = cart.findIndex(item => item.id === pizza.id)
@@ -27,8 +24,12 @@ const PizzaCard = ({pizza, from}) => {
     }
   }
 
-  return(
-    from === 'home' ? (
+  const handleDetail = (name) => {
+    navigate(`./${name}`)
+  }
+
+  if(from == 'home'){
+    return(
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
@@ -43,14 +44,18 @@ const PizzaCard = ({pizza, from}) => {
           )}
         </ListGroup>
       </Card>
-    ) : from === 'pizzas' ? (
+    )
+  }
+
+  if(from == 'pizzas'){
+    return (
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
           <Card.Title>{formatName(name)}</Card.Title>
             <ul>
               {ingredients.map((ing, index) => {
-               return (
+                return (
                 <li key={index}>
                   {formatName(ing)}
                 </li>)}
@@ -59,14 +64,29 @@ const PizzaCard = ({pizza, from}) => {
         </Card.Body>
         <Card.Footer className="text-center d-flex justify-content-between">
           <h4>${price}</h4>
-          <Button onClick={addCart}>Agregar</Button>
+          <div>
+            <Button 
+              onClick={() => handleDetail(name)}
+              size="sm"
+              className="me-1"
+              variant="secondary">
+                Ver detalles
+            </Button>
+            <Button onClick={addCart}>
+              Agregar
+            </Button>
+          </div>
         </Card.Footer>
       </Card>
-    ) : from === 'detail' ? (
+    )
+  }
+
+  if(from == 'detail'){
+    return(
       <Card className="h-100">
         <Card.Img variant="top" src={img} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>{formatName(name)}</Card.Title>
             <Card.Text>
               {desc}
             </Card.Text>
@@ -84,10 +104,8 @@ const PizzaCard = ({pizza, from}) => {
           <Button onClick={addCart}>Agregar</Button>
         </Card.Footer>
       </Card>
-    ) : null
-  )
-  
-  
+    )
+  }
 }
 
 export default PizzaCard
